@@ -33,25 +33,87 @@
             android:layout_height="40dp"
             android:text="Jatorria" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <EditText
+            android:id="@+id/klubTextView"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Kluba" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <EditText
+            android:id="@+id/sareTextView"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Sare soziala" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/logOutButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/purple_200"
-                android:text="Saioa itxi"
-                tools:ignore="TextContrastCheck" />
-
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="8dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/browser_actions_bg_grey"
+            app:backgroundTint="@color/browser_actions_bg_grey"
+            android:text="Gorde"
+            android:textColor="@color/black"
+            tools:ignore="TextContrastCheck" />
+
+        <Button
+            android:id="@+id/getButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/browser_actions_bg_grey"
+            app:backgroundTint="@color/browser_actions_bg_grey"
+            android:textColor="@color/black"
+            android:text="Ikusi"
+            tools:ignore="TextContrastCheck" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/browser_actions_bg_grey"
+            app:backgroundTint="@color/browser_actions_bg_grey"
+            android:textColor="@color/black"
+            android:text="Ezabatu"
+            tools:ignore="TextContrastCheck" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/purple_200"
+            android:text="Saioa itxi"
+            tools:ignore="MissingConstraints,TextContrastCheck" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
