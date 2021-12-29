@@ -1,5 +1,6 @@
 package com.example.androidgral
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
@@ -50,6 +51,12 @@ class HomeActivity : AppCompatActivity() {
         }
         deleteButton.setOnClickListener{
             db.collection("erabiltzaileak").document(email).delete()
+        }
+        drillsButton.setOnClickListener{
+            val drillsIntent = Intent(this,DrillsActivity::class.java).apply{
+                putExtra("email",email)
+            }
+            startActivity(drillsIntent)
         }
     }
 }
