@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log.i
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -27,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_home.*
 import java.util.HashMap
 
 class NewDrillActivity : AppCompatActivity() {
@@ -53,11 +55,28 @@ class NewDrillActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
-
         imageViewId.setOnClickListener {
             fileChooser()
         }
+        gordeBtnId.setOnClickListener {
+            sendData()
+            val drillsIntent = Intent(this,DrillsActivity::class.java).apply{
+                putExtra("irudia",imagePath)
+                putExtra("desk", editTextTextMultiLineId.text)
+                putExtra("izena", textViewId.text)
+            }
+            startActivity(drillsIntent)
+        }
 
+    }
+
+    private fun gorde(izena: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("drills").document(izena).set(
+                hashMapOf("izena" to izena,
+                    "irudia" to imagePath,
+                    "desk" to editTextTextMultiLineId.text)
+            )
     }
 
     private fun fileChooser() {
@@ -69,12 +88,16 @@ class NewDrillActivity : AppCompatActivity() {
 
     private fun sendData(){
         val db = FirebaseFirestore.getInstance()
-
         val imageRef: StorageReference = storageReference!!.child(firebaseAuth!!.uid!!).child("image").child("Drill Pic")
         val uploadImage:UploadTask = imageRef.putFile(imagePath!!)
-        uploadImage.addOnFailureListener{
-            Toast.makeText(this,"Errore bat jazo da", Toast.LENGTH_SHORT).show()
+        uploadImage.addOnFailureListener {
+            Toast.makeText(this, "Errore bat jazo da", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun gorde(){
+        val db = FirebaseFirestore.getInstance()
+        val imageRef: StorageReference = storageReference!!
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,7 +105,6 @@ class NewDrillActivity : AppCompatActivity() {
         if(requestCode==PICK_IMAGE_REQUEST && resultCode==Activity.RESULT_OK && data!=null && data.data!=null){
             imagePath = data.data
             Picasso.get().load(imagePath).into(imageViewId)
-            sendData()
         }
     }
 }

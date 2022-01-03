@@ -7,9 +7,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_drills.*
 import kotlinx.android.synthetic.main.activity_new_drill.*
 
 class DrillsActivity : AppCompatActivity() {
+
+    val drills = listOf(
+        Drill("Australia","Beroketa ariketa","irudia.com")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drills)
@@ -42,5 +48,14 @@ class DrillsActivity : AppCompatActivity() {
         }
         alert.setNegativeButton("Desegin",null)
         alert.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        setContentView(R.layout.activity_drills)
+
+        val bundle = intent.extras
+        val izena = bundle?.getString("izena")
+        recyclerViewId
     }
 }
