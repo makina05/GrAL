@@ -28,6 +28,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -82,14 +83,13 @@ class NewDrillActivity : AppCompatActivity() {
             )
         }
 
-
         gordeBtnId.setOnClickListener {
             sendData()
             igoFirebasera()
             val drillsIntent = Intent(this,DrillsActivity::class.java).apply{
-                putExtra("irudia",imagePath)
-                putExtra("desk", editTextTextMultiLineId.text)
-                putExtra("izena", textViewId.text)
+//                putExtra("irudia",imagePath)
+//                putExtra("desk", editTextTextMultiLineId.text)
+//                putExtra("izena", textViewId.text)
             }
             startActivity(drillsIntent)
         }

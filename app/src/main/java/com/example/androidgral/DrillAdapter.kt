@@ -3,6 +3,7 @@ package com.example.androidgral
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_new_drill.view.*
@@ -23,6 +24,10 @@ class DrillAdapter(val drills: List<Drill>):RecyclerView.Adapter<DrillAdapter.Dr
         holder.render(drills[position])
     }
 
+    fun setListData(data:MutableList<Drill>){
+        var dataList = mutableListOf<Drill>()
+        dataList = data
+    }
 
     class DrillHolder(val view: View):RecyclerView.ViewHolder(view){
         fun render(drill:Drill) {

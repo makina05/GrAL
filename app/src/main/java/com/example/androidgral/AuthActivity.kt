@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_auth.*
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
+        setTheme(R.style.Theme_AndroidGral)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
