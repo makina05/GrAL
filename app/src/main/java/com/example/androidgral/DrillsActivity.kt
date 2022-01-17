@@ -23,16 +23,11 @@ class DrillsActivity : AppCompatActivity() {
     private lateinit var myAdapter: DrillAdapter
     private lateinit var db: FirebaseFirestore
 
-    var drills: ArrayList<Drill> = arrayListOf(
-        Drill("Australia","Beroketa ariketa","irudi.com")
-    )
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drills)
 
-        println(drills.toString())
         initRecycler()
 
         val fab = findViewById<View>(R.id.fabId) as FloatingActionButton
@@ -63,18 +58,6 @@ class DrillsActivity : AppCompatActivity() {
         }
         alert.setNegativeButton("Desegin",null)
         alert.show()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        setContentView(R.layout.activity_drills)
-
-        val bundle = intent.extras
-        val izena = bundle?.getString("izena")
-        val desk = bundle?.getString("desk")
-        val irudia = bundle?.getString("irudia")
-        val drilBerria: Drill = Drill(izena,desk,irudia)
-        drills.add(drilBerria)
     }
 
     fun initRecycler(){
