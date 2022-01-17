@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".AuthActivity">
 
     <LinearLayout
+        android:id="@+id/authLayID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -66,6 +68,22 @@
                 android:layout_weight="1"
                 android:background="@color/sec"
                 android:text="Kautotu" />
+
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/googleBtnId"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:drawableStart="@mipmap/google_ic"
+            android:text="Google"
+            android:textColor="@color/black" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

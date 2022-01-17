@@ -11,40 +11,27 @@ import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_drills.*
 import kotlinx.android.synthetic.main.activity_home.*
 class DrillsActivity : AppCompatActivity() {
 
-    //    var drills: List<Drill> = listOf(
-//        Drill("Australia","Beroketa ariketa","irudia.com"),
-//        Drill("Hamaika","Kontraeraso ariketa", "https://cursokotlin.com/wp-content/uploads/2017/07/thor.jpg")
-//    )
-    var drills: MutableList<Drill> = mutableListOf(
-        Drill("Australia","Beroketa ariketa","irudia.com")
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var drillsArrayList: ArrayList<Drill>
+    private lateinit var myAdapter: DrillAdapter
+    private lateinit var db: FirebaseFirestore
+
+    var drills: ArrayList<Drill> = arrayListOf(
+        Drill("Australia","Beroketa ariketa","irudi.com")
     )
-
-    private fun populateList() {
-        drills.add(Drill("Bat", "Ariketa", "irudia.com"))
-        val db = FirebaseFirestore.getInstance()
-        db.collection("drills").get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    val drill: Drill = document.toObject(Drill::class.java)
-                    drills.add(drill)
-                }
-            }
-    }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drills)
-        populateList()
-        recyclerViewId.adapter?.notifyDataSetChanged()
+
         println(drills.toString())
         initRecycler()
 
@@ -91,9 +78,33 @@ class DrillsActivity : AppCompatActivity() {
     }
 
     fun initRecycler(){
-        recyclerViewId.layoutManager = LinearLayoutManager(this)
-        val adapter = DrillAdapter(drills)
-        recyclerViewId.adapter = adapter
+        recyclerView = findViewById(R.id.recyclerViewId)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        drillsArrayList = arrayListOf()
+        myAdapter = DrillAdapter(drillsArrayList)
+
+        recyclerViewId.adapter = myAdapter
+
+        EventChangeListener()
+    }
+
+    private fun EventChangeListener() {
+        db = FirebaseFirestore.getInstance()
+        db.collection("drills").addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error != null) {
+                    Log.e("Firestore Error", error.message.toString())
+                    return
+                }
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        drillsArrayList.add(dc.document.toObject(Drill::class.java))
+                    }
+                }
+                myAdapter.notifyDataSetChanged()
+            }
+        })
     }
 }
 //class DrillsActivity : AppCompatActivity() {

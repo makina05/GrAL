@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "4857564904",
+    "firebase_url": "https://androidgral-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "androidgral",
     "storage_bucket": "androidgral.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "4857564904-oqsjrqfam6chjg4r1ldm9ei60ic2jqpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidgral",
+            "certificate_hash": "cc9001c758ab525c0dc2faaa88e1bd2379fd9857"
+          }
+        },
         {
           "client_id": "4857564904-di78godfkqpmlj7vpmv92cqqkpi0c9a5.apps.googleusercontent.com",
           "client_type": 3

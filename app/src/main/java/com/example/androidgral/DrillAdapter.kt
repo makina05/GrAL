@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_new_drill.view.*
 import kotlinx.android.synthetic.main.item_drill.view.*
 
-class DrillAdapter(val drills: List<Drill>):RecyclerView.Adapter<DrillAdapter.DrillHolder>(){
+class DrillAdapter(val drills: ArrayList<Drill>):RecyclerView.Adapter<DrillAdapter.DrillHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrillHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,11 +22,6 @@ class DrillAdapter(val drills: List<Drill>):RecyclerView.Adapter<DrillAdapter.Dr
 
     override fun onBindViewHolder(holder: DrillHolder, position: Int) {
         holder.render(drills[position])
-    }
-
-    fun setListData(data:MutableList<Drill>){
-        var dataList = mutableListOf<Drill>()
-        dataList = data
     }
 
     class DrillHolder(val view: View):RecyclerView.ViewHolder(view){
