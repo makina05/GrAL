@@ -1,15 +1,12 @@
 package com.example.androidgral
 
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -70,8 +67,10 @@ class DrillsActivity : AppCompatActivity() {
         recyclerViewId.adapter = myAdapter
 
         EventChangeListener()
-    }
 
+
+
+    }
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
         db.collection("drills").addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -90,6 +89,13 @@ class DrillsActivity : AppCompatActivity() {
         })
     }
 }
+
+
+
+
+
+
+
 //class DrillsActivity : AppCompatActivity() {
 //
 ////    var drills: List<Drill> = listOf(
